@@ -24920,6 +24920,177 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ 9138:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.parseArgs = parseArgs;
+const core = __importStar(__nccwpck_require__(2186));
+function parseArgs() {
+    // Check for required inputs
+    // required list: AZURE_PASSWORD, AZURE_REGISTRY_NAME, AZURE_ORGANIZATION, AZURE_EMAIL
+    const required = [
+        'AZURE_PASSWORD',
+        'AZURE_REGISTRY_NAME',
+        'AZURE_ORGANIZATION',
+        'AZURE_EMAIL'
+    ];
+    for (const input of required) {
+        if (!core.getInput(input) || core.getInput(input) === '') {
+            throw new Error(`Input required and not supplied: ${input}`);
+        }
+    }
+    const AZURE_PASSWORD = core.getInput('AZURE_PASSWORD');
+    const AZURE_REGISTRY_NAME = core.getInput('AZURE_REGISTRY_NAME');
+    const AZURE_ORGANIZATION = core.getInput('AZURE_ORGANIZATION');
+    const AZURE_PROJECT = core.getInput('AZURE_PROJECT');
+    const AZURE_USERNAME = core.getInput('AZURE_USERNAME');
+    const AZURE_EMAIL = core.getInput('AZURE_EMAIL');
+    const AZURE_REGISTRY_SCOPE = core.getInput('AZURE_REGISTRY_SCOPE');
+    const AZURE_ENCODE_PASSWORD = core.getInput('AZURE_ENCODE_PASSWORD');
+    const args = {
+        AZURE_PASSWORD,
+        AZURE_REGISTRY_NAME,
+        AZURE_ORGANIZATION,
+        AZURE_PROJECT,
+        AZURE_USERNAME,
+        AZURE_EMAIL,
+        AZURE_REGISTRY_SCOPE,
+        AZURE_ENCODE_PASSWORD
+    };
+    console.log(args);
+    return args;
+}
+
+
+/***/ }),
+
+/***/ 76:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+__exportStar(__nccwpck_require__(9138), exports);
+__exportStar(__nccwpck_require__(33), exports);
+__exportStar(__nccwpck_require__(2639), exports);
+
+
+/***/ }),
+
+/***/ 33:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.encodePassword = encodePassword;
+function encodePassword(args) {
+    if (args.AZURE_ENCODE_PASSWORD === 'true' ||
+        args.AZURE_ENCODE_PASSWORD === true) {
+        return Buffer.from(args.AZURE_PASSWORD, 'utf-8').toString('base64');
+    }
+    return args.AZURE_PASSWORD;
+}
+
+
+/***/ }),
+
+/***/ 2639:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.generateWriteContent = generateWriteContent;
+exports.writeFile = writeFile;
+const fs_1 = __importDefault(__nccwpck_require__(7147));
+const libs_1 = __nccwpck_require__(76);
+function generateUrl(args) {
+    if (args.AZURE_PROJECT && args.AZURE_PROJECT !== '') {
+        return `pkgs.dev.azure.com/${args.AZURE_ORGANIZATION}/${args.AZURE_PROJECT}/_packaging/${args.AZURE_REGISTRY_NAME}/npm`;
+    }
+    return `pkgs.dev.azure.com/${args.AZURE_ORGANIZATION}/_packaging/${args.AZURE_REGISTRY_NAME}/npm`;
+}
+function generateRegistry(args) {
+    let scope = '';
+    if (args.AZURE_REGISTRY_SCOPE && args.AZURE_REGISTRY_SCOPE !== '') {
+        scope = `${args.AZURE_REGISTRY_SCOPE}:`;
+    }
+    return `${scope}registry=https://${generateUrl(args)}/registry/
+always-auth=true
+`;
+}
+function generateCredentials(args) {
+    const url = generateUrl(args);
+    const password = (0, libs_1.encodePassword)(args);
+    return `; begin auth token
+//${url}/registry/:username=${args.AZURE_USERNAME}
+//${url}/registry/:_password="${password}"
+//${url}/registry/:email=${args.AZURE_EMAIL}
+//${url}/:username=${args.AZURE_USERNAME}
+//${url}/:_password="${password}"
+//${url}/:email=${args.AZURE_EMAIL}
+; end auth token`;
+}
+function generateWriteContent(args) {
+    return generateRegistry(args) + generateCredentials(args);
+}
+function writeFile(content) {
+    // We need to write the file to the current workspace
+    const workspace = process.env.GITHUB_WORKSPACE;
+    let path = `${workspace}/.npmrc`;
+    if (!workspace) {
+        path = '.npmrc';
+    }
+    fs_1.default.writeFileSync(path, content);
+}
+
+
+/***/ }),
+
 /***/ 399:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -24951,52 +25122,36 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = run;
 const core = __importStar(__nccwpck_require__(2186));
-const wait_1 = __nccwpck_require__(5259);
+const libs_1 = __nccwpck_require__(76);
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
  */
+//inputs
+// - AZURE_PASSWORD
+//inputs
+// - AZURE_PASSWORD: Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT
+// - AZURE_REGISTRY_NAME: Name of the registry
+// - AZURE_ORGANIZATION: Name of your ADO organization
+// - AZURE_PROJECT: NAME of your Project (optional)
+// - AZURE_USERNAME: Name of the user, usually the same as ORG (optional)
+// - AZURE_EMAIL: Email of the user, creator of the AZURE_PASSWORD
+// - AZURE_REGISTRY_SCOPE: Scope for the registry (optional)
+// - AZURE_ENCODE_PASSWORD: Indicates if the AZURE_PASSWORD is encoded as BASE64 string or "pure" PAT, optional
 async function run() {
     try {
-        const ms = core.getInput('milliseconds');
-        // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-        core.debug(`Waiting ${ms} milliseconds ...`);
-        // Log the current timestamp, wait, then log the new timestamp
-        core.debug(new Date().toTimeString());
-        await (0, wait_1.wait)(parseInt(ms, 10));
-        core.debug(new Date().toTimeString());
-        // Set outputs for other workflow steps to use
-        core.setOutput('time', new Date().toTimeString());
+        const args = (0, libs_1.parseArgs)();
+        core.debug('Args parsed');
+        const content = (0, libs_1.generateWriteContent)(args);
+        core.debug('Content generated');
+        (0, libs_1.writeFile)(content);
+        core.debug('File written');
     }
     catch (error) {
         // Fail the workflow run if an error occurs
         if (error instanceof Error)
             core.setFailed(error.message);
     }
-}
-
-
-/***/ }),
-
-/***/ 5259:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.wait = wait;
-/**
- * Wait for a number of milliseconds.
- * @param milliseconds The number of milliseconds to wait.
- * @returns {Promise<string>} Resolves with 'done!' after the wait is over.
- */
-async function wait(milliseconds) {
-    return new Promise(resolve => {
-        if (isNaN(milliseconds)) {
-            throw new Error('milliseconds not a number');
-        }
-        setTimeout(() => resolve('done!'), milliseconds);
-    });
 }
 
 

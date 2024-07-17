@@ -57,8 +57,11 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
-
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+          AZURE_PASSWORD: password
+          AZURE_REGISTRY_NAME: registry
+          AZURE_ORGANIZATION: organization
+          AZURE_PROJECT: project
+          AZURE_USERNAME: username
+          AZURE_EMAIL: email
+          AZURE_REGISTRY_SCOPE: scope
+          AZURE_ENCODE_PASSWORD: false
