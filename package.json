@@ -1,7 +1,7 @@
 {
   "name": "ado-npmrc-all-os",
   "description": "Azure Dev Ops .npmrc maker for all OS",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "author": "Luke Celitan, Spaceout.pl",
   "private": true,
   "homepage": "https://github.com/MassivDash/ado-npmrc-ts-action",
