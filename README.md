@@ -1,6 +1,6 @@
 <h1 align="center">📦 Azure Dev Ops .npmrc maker github action </h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.3-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/MassivDash/typescript-react-express-esbuild" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -12,15 +12,21 @@
   </a>
 </p>
 
-[![GitHub Super-Linter](https://github.com/actions/create-a-azure-dev-ops-npmrc-file/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/create-a-azure-dev-ops-npmrc-file/actions/workflows/ci.yml/badge.svg)
+![GitHub Super-Linter](https://github.com/MassivDash/ado-npmrc-ts-action/actions/workflows/linter.yml/badge.svg)![CI](https://github.com/MassivDash/ado-npmrc-ts-action/actions/workflows/ci.yml/badge.svg)![Compliation](https://github.com/MassivDash/ado-npmrc-ts-action/actions/workflows/check-dist.yml/badge.svg)![CodeCoverage](./badges/coverage.svg)
 
-Platforms
-![Static Badge](https://img.shields.io/badge/Platform-Windows-blue)![Static Badge](https://img.shields.io/badge/Platform-Linux-blue)![Static Badge](https://img.shields.io/badge/Platform-MacOs-blue)
+**Platforms**
+
+![windows](https://img.shields.io/badge/Platform-Windows-blue)
+![linux](https://img.shields.io/badge/Platform-Linux-blue)
+![macOs](https://img.shields.io/badge/Platform-MacOs-blue)
 
 This action will create a .npmrc file with authorization needed to access Azure
 Dev Ops internal npm registry / feed. Works on all github OS machines (Windows,
 Linux, MacOS)
+
+**Minimal node version**
+
+![Static Badge](https://img.shields.io/badge/_node_-%3E%3D_20.6.0-red)
 
 ```
 registry=https://pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/
@@ -124,11 +130,12 @@ jobs:
 
     steps:
       # Change @main to a specific commit SHA or version tag, e.g.:
-      # actions/ado-npmrc-all-os@e76147da8e5c81eaf017dede5645551d4b94427b
-      # actions/ado-npmrc-all-os@v1.2.3
-      - name: Create .npmrc ado file
+      # MassivDash/ado-npmrc-ts-action@e76147da8e5c81eaf017dede5645551d4b94427b
+      # MassivDash/ado-npmrc-ts-action@v0.0.3
+
+      - name: Create a Azure Dev Ops .npmrc file
         id: ado-npmrc
-        uses: actions/ado-npmrc-all-os
+        uses: MassivDash/ado-npmrc-ts-action@v0.0.2
         with:
           AZURE_PASSWORD: { { secrets.AZURE_PASSWORD } }
           AZURE_REGISTRY_NAME: 'registry'
