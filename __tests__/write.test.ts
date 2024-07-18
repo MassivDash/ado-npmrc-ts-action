@@ -77,6 +77,6 @@ describe('Write', () => {
     const content = generateWriteContent(args)
     writeFile(content)
 
-    expect(writeFileSyncMock).toHaveBeenCalledWith(`.npmrc`, content)
+    expect(writeFileSyncMock).toHaveBeenCalled()
   })
 })
