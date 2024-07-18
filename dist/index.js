@@ -24983,7 +24983,6 @@ function parseArgs() {
         AZURE_REGISTRY_SCOPE,
         AZURE_ENCODE_PASSWORD
     };
-    console.log(args);
     return args;
 }
 

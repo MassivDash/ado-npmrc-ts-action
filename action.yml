@@ -4,8 +4,8 @@ author: 'Luke Celintan, Spaceout.pl'
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: 'heart'
-  color: 'red'
+  icon: 'package'
+  color: 'purple'
 
 # Define your inputs here.
 inputs:
