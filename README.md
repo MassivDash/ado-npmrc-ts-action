@@ -32,12 +32,12 @@ Linux, MacOS)
 registry=https://pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/
 always-auth=true
 ; begin auth token
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/registry/:username=AZURE_USERNAME
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/registry/:_password=AZURE_PASSWORD
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/registry/:email=AZURE_EMAIL
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/:username=AZURE_USERNAME
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/:_password=AZURE_PASSWORD
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/:email=AZURE_EMAIL
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/:username=AZURE_USERNAME
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/:_password=AZURE_PASSWORD
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/:email=AZURE_EMAIL
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/:username=AZURE_USERNAME
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/:_password=AZURE_PASSWORD
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/:email=AZURE_EMAIL
 ; end auth token
 ```
 
