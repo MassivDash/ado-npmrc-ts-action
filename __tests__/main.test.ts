@@ -8,82 +8,58 @@
 
 import * as core from '@actions/core'
 import * as main from '../src/main'
+import { Args } from '../src/libs/args'
+import fs from 'fs'
 
 // Mock the action's main function
 const runMock = jest.spyOn(main, 'run')
 
-// Other utilities
-const timeRegex = /^\d{2}:\d{2}:\d{2}/
-
 // Mock the GitHub Actions core library
 let debugMock: jest.SpiedFunction<typeof core.debug>
-let errorMock: jest.SpiedFunction<typeof core.error>
 let getInputMock: jest.SpiedFunction<typeof core.getInput>
 let setFailedMock: jest.SpiedFunction<typeof core.setFailed>
-let setOutputMock: jest.SpiedFunction<typeof core.setOutput>
+
+const writeFileSyncMock = jest.spyOn(fs, 'writeFileSync').mockImplementation()
+
+const args: Args = {
+  AZURE_PASSWORD: 'password',
+  AZURE_REGISTRY_NAME: 'registry',
+  AZURE_ORGANIZATION: 'organization',
+  AZURE_EMAIL: 'email',
+  AZURE_USERNAME: 'username'
+}
 
 describe('action', () => {
   beforeEach(() => {
     jest.clearAllMocks()
 
     debugMock = jest.spyOn(core, 'debug').mockImplementation()
-    errorMock = jest.spyOn(core, 'error').mockImplementation()
     getInputMock = jest.spyOn(core, 'getInput').mockImplementation()
     setFailedMock = jest.spyOn(core, 'setFailed').mockImplementation()
-    setOutputMock = jest.spyOn(core, 'setOutput').mockImplementation()
   })
 
-  it('sets the time output', async () => {
-    // Set the action's inputs as return values from core.getInput()
+  it('should run the action', async () => {
     getInputMock.mockImplementation(name => {
-      switch (name) {
-        case 'milliseconds':
-          return '500'
-        default:
-          return ''
-      }
+      const value = args[name as keyof Args]
+      return (value !== undefined ? value : '').toString()
     })
 
     await main.run()
-    expect(runMock).toHaveReturned()
 
-    // Verify that all of the core library functions were called correctly
-    expect(debugMock).toHaveBeenNthCalledWith(1, 'Waiting 500 milliseconds ...')
-    expect(debugMock).toHaveBeenNthCalledWith(
-      2,
-      expect.stringMatching(timeRegex)
-    )
-    expect(debugMock).toHaveBeenNthCalledWith(
-      3,
-      expect.stringMatching(timeRegex)
-    )
-    expect(setOutputMock).toHaveBeenNthCalledWith(
-      1,
-      'time',
-      expect.stringMatching(timeRegex)
-    )
-    expect(errorMock).not.toHaveBeenCalled()
+    expect(runMock).toHaveBeenCalled()
+    expect(debugMock).toHaveBeenCalledWith('Args parsed')
+    expect(debugMock).toHaveBeenCalledWith('Content generated')
+    expect(debugMock).toHaveBeenCalledWith('File written')
+    expect(writeFileSyncMock).toHaveBeenCalled()
   })
 
-  it('sets a failed status', async () => {
-    // Set the action's inputs as return values from core.getInput()
-    getInputMock.mockImplementation(name => {
-      switch (name) {
-        case 'milliseconds':
-          return 'this is not a number'
-        default:
-          return ''
-      }
-    })
+  it('should fail if an error occurs', async () => {
+    getInputMock.mockImplementation(() => '')
 
     await main.run()
-    expect(runMock).toHaveReturned()
 
-    // Verify that all of the core library functions were called correctly
-    expect(setFailedMock).toHaveBeenNthCalledWith(
-      1,
-      'milliseconds not a number'
+    expect(setFailedMock).toHaveBeenCalledWith(
+      'Input required and not supplied: AZURE_PASSWORD'
     )
-    expect(errorMock).not.toHaveBeenCalled()
   })
 })

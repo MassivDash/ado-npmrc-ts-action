@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 name: 'The name of your action here'
 description: 'Provide a description here'
 author: 'Your name or organization here'
+=======
+name: 'Create a Azure Dev Ops .npmrc file'
+description: 'Create a .npmrc file that can connect to Azure Dev Ops Artifacts'
+author: 'Luke Celintan, Spaceout.pl'
+>>>>>>> releases/v1
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
@@ -9,6 +15,7 @@ branding:
 
 # Define your inputs here.
 inputs:
+<<<<<<< HEAD
   milliseconds:
     description: 'Your input description here'
     required: true
@@ -18,6 +25,51 @@ inputs:
 outputs:
   time:
     description: 'Your output description here'
+=======
+  AZURE_PASSWORD:
+    description:
+      'Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT'
+    required: true
+    default: ''
+    type: string
+  AZURE_REGISTRY_NAME:
+    description: 'Name of the registry'
+    required: true
+    default: 'Upstream'
+    type: string
+  AZURE_ORGANIZATION:
+    description: 'Name of your ADO organization'
+    required: true
+    default: 'Org'
+    type: string
+  AZURE_PROJECT:
+    description: 'NAME of your Project (optional)'
+    required: false
+    default: 'Project'
+    type: string
+  AZURE_USERNAME:
+    description: 'Name of the user, usually the same as ORG'
+    required: false
+    default: 'ORG'
+    type: string
+  AZURE_EMAIL:
+    description: 'Email of the user, creator of the AZURE_PASSWORD'
+    required: true
+    default: 'user@org.com'
+    type: string
+  AZURE_REGISTRY_SCOPE:
+    description: 'Scope for the registry (optional)'
+    required: false
+    default: '@your-org'
+    type: string
+  AZURE_ENCODE_PASSWORD:
+    description:
+      'Indicates if the AZURE_PASSWORD is encoded as BASE64 string or "pure"
+      PAT, optional'
+    required: false
+    default: false
+    type: boolean
+>>>>>>> releases/v1
 
 runs:
   using: node20
