@@ -1,7 +1,7 @@
 # Azure Dev Ops .npmrc maker github action
 
-[![GitHub Super-Linter](https://github.com/actions/hello-world-javascript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/hello-world-javascript-action/actions/workflows/ci.yml/badge.svg)
+[![GitHub Super-Linter](https://github.com/actions/spaceout-ado-npmrc/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
+![CI](https://github.com/actions/spaceout-ado-npmrc/actions/workflows/ci.yml/badge.svg)
 
 This action will create a .npmrc file with authorization needed to access Azure
 Dev Ops internal npm registry / feed.
@@ -44,21 +44,59 @@ Works on all OS types (mac, windows, linux) with node >= 20.0.0 setup
 
 Here's an example of how to use this action in a workflow file:
 
-```yaml
+````yaml
 name: Example Workflow
 
+
+```yaml
 on:
   workflow_dispatch:
     inputs:
-      azure-registry:
-        description: Who to greet in the log
-        required: true
-        default: 'World'
-        type: string
+      inputs:
+        AZURE_PASSWORD:
+          description: 'Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT'
+          required: true
+          default: ''
+          type: string
+        AZURE_REGISTRY_NAME:
+          description: 'Name of the registry'
+          required: true
+          default: 'Upstream'
+          type: string
+        AZURE_ORGANIZATION:
+          description: 'Name of your ADO organization'
+          required: true
+          default: 'Org'
+          type: string
+        AZURE_PROJECT:
+          description: 'NAME of your Project (optional)'
+          required: false
+          default: 'Project'
+          type: string
+        AZURE_USERNAME:
+          description: 'Name of the user, usually the same as ORG'
+          required: false
+          default: 'ORG'
+          type: string
+        AZURE_EMAIL:
+          description: 'Email of the user, creator of the AZURE_PASSWORD'
+          required: true
+          default: 'user@org.com'
+          type: string
+        AZURE_REGISTRY_SCOPE:
+          description: 'Scope for the registry (optional)'
+          required: false
+          default: '@your-org'
+          type: string
+        AZURE_ENCODE_PASSWORD:
+          description: 'Indicates if the AZURE_PASSWORD is encoded as BASE64 string or "pure" PAT, optional'
+          required: false
+          default: false
+          type: boolean
 
 jobs:
-  say-hello:
-    name: Say Hello
+  test:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
@@ -67,7 +105,12 @@ jobs:
       # actions/hello-world-javascript-action@v1.2.3
       - name: Print to Log
         id: print-to-log
-        uses: actions/hello-world-javascript-action@main
+        uses: actions/ado-npmrcall-os@main
         with:
           who-to-greet: ${{ inputs.who-to-greet }}
+<<<<<<< Updated upstream
 ```
+=======
+````
+
+> > > > > > > Stashed changes
