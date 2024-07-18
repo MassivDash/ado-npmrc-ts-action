@@ -23,10 +23,14 @@ export async function run(): Promise<void> {
   try {
     const args = parseArgs()
     core.debug('Args parsed')
+    core.info(`Writing .npmrc file for ${args.AZURE_REGISTRY_NAME} registry`)
     const content = generateWriteContent(args)
+    core.info('Content generated')
     core.debug('Content generated')
     writeFile(content)
     core.debug('File written')
+    core.info(`File written to ${process.env.GITHUB_WORKSPACE}/.npmrc`)
+    core.info('Action complete')
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
