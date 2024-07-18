@@ -52,7 +52,10 @@ typings/
 
 # Optional npm cache directory
 .npm
+<<<<<<< HEAD
+=======
 .npmrc
+>>>>>>> releases/v1
 
 # Optional eslint cache
 .eslintcache

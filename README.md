@@ -44,17 +44,15 @@ Works on all OS types (mac, windows, linux) with node >= 20.0.0 setup
 
 Here's an example of how to use this action in a workflow file:
 
-````yaml
-name: Example Workflow
-
-
 ```yaml
+name: Example Workflow
 on:
   workflow_dispatch:
     inputs:
       inputs:
         AZURE_PASSWORD:
-          description: 'Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT'
+          description:
+            'Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT'
           required: true
           default: ''
           type: string
@@ -89,7 +87,9 @@ on:
           default: '@your-org'
           type: string
         AZURE_ENCODE_PASSWORD:
-          description: 'Indicates if the AZURE_PASSWORD is encoded as BASE64 string or "pure" PAT, optional'
+          description:
+            'Indicates if the AZURE_PASSWORD is encoded as BASE64 string or
+            "pure" PAT, optional'
           required: false
           default: false
           type: boolean
@@ -108,18 +108,4 @@ jobs:
         uses: actions/ado-npmrcall-os@main
         with:
           who-to-greet: ${{ inputs.who-to-greet }}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 ```
-=======
-````
-
-> > > > > > > # Stashed changes
-
-```
->>>>>>> Stashed changes
-```
-=======
-````
->>>>>>> Stashed changes
