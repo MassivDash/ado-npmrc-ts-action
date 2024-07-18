@@ -1,31 +1,52 @@
-# Azure Dev Ops .npmrc maker github action
+<h1 align="center">📦 Azure Dev Ops .npmrc maker github action </h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/MassivDash/typescript-react-express-esbuild" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/SpaceoutPl" target="_blank">
+    <img alt="Twitter: SpaceoutPl" src="https://img.shields.io/twitter/follow/SpaceoutPl.svg?style=social" />
+  </a>
+</p>
 
 [![GitHub Super-Linter](https://github.com/actions/spaceout-ado-npmrc/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
 ![CI](https://github.com/actions/spaceout-ado-npmrc/actions/workflows/ci.yml/badge.svg)
 
+Platforms
+![Static Badge](https://img.shields.io/badge/Platform-Windows-blue)![Static Badge](https://img.shields.io/badge/Platform-Linux-blue)![Static Badge](https://img.shields.io/badge/Platform-MacOs-blue)
+
 This action will create a .npmrc file with authorization needed to access Azure
-Dev Ops internal npm registry / feed.
+Dev Ops internal npm registry / feed. Works on all github OS machines (Windows,
+Linux, MacOS)
 
 ```
-registry=https://pkgs.dev.azure.com//_packaging/UPSTREAM_NPM_REG/npm/registry/
+registry=https://pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/
 always-auth=true
 ; begin auth token
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/registry/:username=JLL-DSEMEA
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/registry/:_password=cHI3dDZqNmx1dWJmcHlnbTRvYzUydnJvenZ6c3dnbW42NzU3ZGJ5dWI2ZGZ4Zmdsb3cycQ==
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/registry/:email=lukasz.celitan@eu.jll.com
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/:username=JLL-DSEMEA
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/:_password=cHI3dDZqNmx1dWJmcHlnbTRvYzUydnJvenZ6c3dnbW42NzU3ZGJ5dWI2ZGZ4Zmdsb3cycQ==
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/:email=lukasz.celitan@eu.jll.com
+//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/registry/:username=AZURE_USERNAME
+//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/registry/:_password=AZURE_PASSWORD
+//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/registry/:email=AZURE_EMAIL
+//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/:username=AZURE_USERNAME
+//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/:_password=AZURE_PASSWORD
+//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/AZURE_REGISTRY_NAME/npm/:email=AZURE_EMAIL
 ; end auth token
-
 ```
 
+\*action works with project based feeds aswell
+
 Works on all OS types (mac, windows, linux) with node >= 20.0.0 setup
+
+---
 
 ## Prerequisites
 
 - Azure Dev Ops npm registry
 - Azure PAT token
+
+---
 
 ## Variables
 
@@ -39,6 +60,8 @@ Works on all OS types (mac, windows, linux) with node >= 20.0.0 setup
 | AZURE_EMAIL           | Email of the user, creator of the AZURE_PASSWORD                                    | Yes      | user@org.com  | string  |
 | AZURE_REGISTRY_SCOPE  | Scope for the registry (optional)                                                   | No       | @your-org     | string  |
 | AZURE_ENCODE_PASSWORD | Indicates if the AZURE_PASSWORD is encoded as BASE64 string or "pure" PAT, optional | No       | false         | boolean |
+
+---
 
 ## Usage
 
@@ -101,11 +124,23 @@ jobs:
 
     steps:
       # Change @main to a specific commit SHA or version tag, e.g.:
-      # actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
-      # actions/hello-world-javascript-action@v1.2.3
-      - name: Print to Log
-        id: print-to-log
-        uses: actions/ado-npmrcall-os@main
+      # actions/ado-npmrc-all-os@e76147da8e5c81eaf017dede5645551d4b94427b
+      # actions/ado-npmrc-all-os@v1.2.3
+      - name: Create .npmrc ado file
+        id: ado-npmrc
+        uses: actions/ado-npmrc-all-os
         with:
-          who-to-greet: ${{ inputs.who-to-greet }}
+          AZURE_PASSWORD: { { secrets.AZURE_PASSWORD } }
+          AZURE_REGISTRY_NAME: 'registry'
+          AZURE_USERNAME: 'username'
+          AZURE_ORGANIZATION: 'organization'
+          AZURE_EMAIL: 'user@email.com'
 ```
+
+---
+
+<img src="https://spaceout.pl/icons/icon-96x96.png?v=c01d3dc2404b91dfce33d962ff296151" alt="spaceout.pl" />
+
+Luke Celitan, [Spaceghost](https://spaceout.pl/about)
+
+x: [@Spaceout.pl] https://spaceout.pl
