@@ -109,8 +109,13 @@ jobs:
         with:
           who-to-greet: ${{ inputs.who-to-greet }}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ```
 =======
 ````
 
-> > > > > > > Stashed changes
+> > > > > > > # Stashed changes
+
+```
+>>>>>>> Stashed changes
+```
