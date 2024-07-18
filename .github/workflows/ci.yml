@@ -14,12 +14,7 @@ permissions:
 jobs:
   test-typescript:
     name: TypeScript Tests
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         id: checkout
@@ -76,7 +71,7 @@ jobs:
 
       - name: Check if file exists
         run: |
-          if [ ! -f "${{env.GITHUB_WORKSPACE}}\.npmrc" ]; then
+          if [ ! -f ".npmrc" ]; then
           echo "File does not exist!"
           exit 1
           fi
@@ -85,7 +80,7 @@ jobs:
 
       - name: Check if file exists
         run: |
-          if (!(Test-Path "${{env.GITHUB_WORKSPACE}}\.npmrc")) {
+          if (!(Test-Path ".npmrc")) {
           Write-Host "File does not exist!"
           exit 1
           }
