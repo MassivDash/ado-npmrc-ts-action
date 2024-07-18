@@ -18,6 +18,7 @@ const runMock = jest.spyOn(main, 'run')
 let debugMock: jest.SpiedFunction<typeof core.debug>
 let getInputMock: jest.SpiedFunction<typeof core.getInput>
 let setFailedMock: jest.SpiedFunction<typeof core.setFailed>
+let setInfoMock: jest.SpiedFunction<typeof core.info>
 
 const writeFileSyncMock = jest.spyOn(fs, 'writeFileSync').mockImplementation()
 
@@ -36,6 +37,7 @@ describe('action', () => {
     debugMock = jest.spyOn(core, 'debug').mockImplementation()
     getInputMock = jest.spyOn(core, 'getInput').mockImplementation()
     setFailedMock = jest.spyOn(core, 'setFailed').mockImplementation()
+    setInfoMock = jest.spyOn(core, 'info').mockImplementation()
   })
 
   it('should run the action', async () => {
@@ -50,6 +52,9 @@ describe('action', () => {
     expect(debugMock).toHaveBeenCalledWith('Args parsed')
     expect(debugMock).toHaveBeenCalledWith('Content generated')
     expect(debugMock).toHaveBeenCalledWith('File written')
+
+    expect(setInfoMock).toHaveBeenCalled()
+
     expect(writeFileSyncMock).toHaveBeenCalled()
   })
 

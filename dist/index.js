@@ -25141,10 +25141,14 @@ async function run() {
     try {
         const args = (0, libs_1.parseArgs)();
         core.debug('Args parsed');
+        core.info(`Writing .npmrc file for ${args.AZURE_REGISTRY_NAME} registry`);
         const content = (0, libs_1.generateWriteContent)(args);
+        core.info('Content generated');
         core.debug('Content generated');
         (0, libs_1.writeFile)(content);
         core.debug('File written');
+        core.info(`File written to ${process.env.GITHUB_WORKSPACE}/.npmrc`);
+        core.info('Action complete');
     }
     catch (error) {
         // Fail the workflow run if an error occurs

@@ -12,8 +12,8 @@
   </a>
 </p>
 
-[![GitHub Super-Linter](https://github.com/actions/spaceout-ado-npmrc/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/spaceout-ado-npmrc/actions/workflows/ci.yml/badge.svg)
+[![GitHub Super-Linter](https://github.com/actions/create-a-azure-dev-ops-npmrc-file/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
+![CI](https://github.com/actions/create-a-azure-dev-ops-npmrc-file/actions/workflows/ci.yml/badge.svg)
 
 Platforms
 ![Static Badge](https://img.shields.io/badge/Platform-Windows-blue)![Static Badge](https://img.shields.io/badge/Platform-Linux-blue)![Static Badge](https://img.shields.io/badge/Platform-MacOs-blue)

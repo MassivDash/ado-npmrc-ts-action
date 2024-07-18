@@ -14,7 +14,11 @@ permissions:
 jobs:
   test-typescript:
     name: TypeScript Tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
       - name: Checkout
@@ -46,7 +50,11 @@ jobs:
 
   test-action:
     name: GitHub Actions Test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
       - name: Checkout
@@ -65,3 +73,21 @@ jobs:
           AZURE_EMAIL: email
           AZURE_REGISTRY_SCOPE: scope
           AZURE_ENCODE_PASSWORD: false
+
+      - name: Check if file exists
+        run: |
+          if [ ! -f "${{env.GITHUB_WORKSPACE}}\.npmrc" ]; then
+          echo "File does not exist!"
+          exit 1
+          fi
+        shell: bash
+        if: ${{ matrix.os != 'windows-latest' }}
+
+      - name: Check if file exists
+        run: |
+          if (!(Test-Path "${{env.GITHUB_WORKSPACE}}\.npmrc")) {
+          Write-Host "File does not exist!"
+          exit 1
+          }
+        shell: powershell
+        if: ${{ matrix.os == 'windows-latest' }}
