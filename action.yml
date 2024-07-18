@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
-=======
 name: 'Create a Azure Dev Ops .npmrc file'
 description: 'Create a .npmrc file that can connect to Azure Dev Ops Artifacts'
 author: 'Luke Celintan, Spaceout.pl'
->>>>>>> releases/v1
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
@@ -15,17 +9,6 @@ branding:
 
 # Define your inputs here.
 inputs:
-<<<<<<< HEAD
-  milliseconds:
-    description: 'Your input description here'
-    required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
-=======
   AZURE_PASSWORD:
     description:
       'Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT'
@@ -69,7 +52,6 @@ outputs:
     required: false
     default: false
     type: boolean
->>>>>>> releases/v1
 
 runs:
   using: node20
