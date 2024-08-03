@@ -19,11 +19,11 @@ pre-commit:
       glob: '*.{js,ts,jsx,tsx}'
       run: npm run lint
     prettier:
-      glob: '*.{js,ts,jsx,tsx}'
+      glob: '*.{js,ts,jsx,tsx, json}'
       run: npm run format:write
     test:
       tags: test
-      glob: '*.{js,ts,jsx,tsx}'
+      glob: '*.{js,ts,jsx,tsx, json}'
       run: npm run test
     build:
       tags: build
