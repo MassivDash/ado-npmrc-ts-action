@@ -24,9 +24,7 @@ export function parseArgs(): Args {
   for (const input of required) {
     const inputValue = core.getInput(input)
     if (typeof inputValue !== 'string' || inputValue === '') {
-      throw new Error(
-        `Input required and not supplied: ${JSON.stringify(input)}`
-      )
+      throw new Error(`Input required and not supplied: ${input}`)
     }
   }
 
