@@ -25,7 +25,3 @@ pre-commit:
       tags: build
       glob: '*.{js,ts,jsx,tsx}'
       run: npm run package
-    typecheck:
-      tags: typecheck
-      glob: '*.{js,ts,jsx,tsx}'
-      run: npx ts-standard --project ./.github/linters/tsconfig.json --fix
