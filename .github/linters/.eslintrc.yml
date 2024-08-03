@@ -12,7 +12,8 @@ ignorePatterns:
   - '**/node_modules/.*'
   - '**/dist/.*'
   - '**/coverage/.*'
-  - '*.json'
+  - '*.json',
+  - 'jest.config.ts'
 
 parser: '@typescript-eslint/parser'
 
