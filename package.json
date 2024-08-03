@@ -65,7 +65,7 @@
       "json-summary",
       "text",
       "lcov",
-      "corbertura"
+      "cobertura"
     ],
     "collectCoverage": true,
     "collectCoverageFrom": [
