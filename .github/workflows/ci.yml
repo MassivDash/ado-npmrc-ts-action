@@ -50,15 +50,6 @@ jobs:
       - name: Run project analyzer
         run: npm i -g project-analyzer && projectAnalyzer -m -t
 
-      - name: 'Report Coverage'
-        # Set if: always() to also generate the report if tests are failing
-        # Only works if you set `reportOnFailure: true` in your vite config as specified above
-        if: always()
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          coverage-file: ./coverage/coverage-summary.json
-          skip-step: all
-
       - name: Post coverage summary
         id: coverage_summary
         uses: irongut/CodeCoverageSummary@v1.3.0
