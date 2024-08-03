@@ -11,7 +11,7 @@ export interface Args {
   AZURE_ENCODE_PASSWORD?: boolean | string
 }
 
-export function parseArgs(): Args {
+export function parseArgs (): Args {
   // Check for required inputs
   // required list: AZURE_PASSWORD, AZURE_REGISTRY_NAME, AZURE_ORGANIZATION, AZURE_EMAIL
 
@@ -22,8 +22,11 @@ export function parseArgs(): Args {
     'AZURE_EMAIL'
   ]
   for (const input of required) {
-    if (!core.getInput(input) || core.getInput(input) === '') {
-      throw new Error(`Input required and not supplied: ${input}`)
+    const inputValue = core.getInput(input)
+    if (typeof inputValue !== 'string' || inputValue === '') {
+      throw new Error(
+        `Input required and not supplied: ${JSON.stringify(input)}`
+      )
     }
   }
 
