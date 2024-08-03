@@ -1,4 +1,6 @@
-module.export = {
+import type { Config } from 'jest'
+
+const config: Config = {
   preset: 'ts-jest',
   verbose: true,
   clearMocks: true,
@@ -7,7 +9,7 @@ module.export = {
   testMatch: ['**/*.test.ts'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   transform: {
-    '^.+\\.ts$': 'ts-jest'
+    '^.+.ts?$': ['ts-jest', {}]
   },
   coverageReporters: ['json-summary', 'text', 'lcov', 'cobertura'],
   collectCoverage: true,
@@ -22,3 +24,4 @@ module.export = {
     }
   }
 }
+export default config
