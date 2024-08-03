@@ -6,10 +6,10 @@ import { parseArgs, generateWriteContent, writeFile } from './libs'
  * @returns {Promise<void>} Resolves when the action is complete.
  */
 
-//inputs
+// inputs
 // - AZURE_PASSWORD
 
-//inputs
+// inputs
 // - AZURE_PASSWORD: Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT
 // - AZURE_REGISTRY_NAME: Name of the registry
 // - AZURE_ORGANIZATION: Name of your ADO organization
@@ -29,7 +29,7 @@ export async function run(): Promise<void> {
     core.debug('Content generated')
     writeFile(content)
     core.debug('File written')
-    core.info(`File written to ${process.env.GITHUB_WORKSPACE}/.npmrc`)
+    core.info(`File written to ${process.env.GITHUB_WORKSPACE ?? ''}/.npmrc`)
     core.info('Action complete')
   } catch (error) {
     // Fail the workflow run if an error occurs

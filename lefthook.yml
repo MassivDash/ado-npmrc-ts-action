@@ -1,0 +1,27 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+# pre-push:
+#   commands:
+#     packages-audit:
+#       tags: frontend security
+#       run: yarn audit
+#     gems-audit:
+#       tags: backend security
+#       run: bundle audit
+#
+pre-commit:
+  commands:
+    eslint:
+      glob: '*.{js,ts,jsx,tsx}'
+      run: npm run lint
+    test:
+      tags: test
+      glob: '*.{js,ts,jsx,tsx, json}'
+      run: npm run test
+    build:
+      tags: build
+      glob: '*.{js,ts,jsx,tsx}'
+      run: npm run package

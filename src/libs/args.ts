@@ -22,7 +22,8 @@ export function parseArgs(): Args {
     'AZURE_EMAIL'
   ]
   for (const input of required) {
-    if (!core.getInput(input) || core.getInput(input) === '') {
+    const inputValue = core.getInput(input)
+    if (typeof inputValue !== 'string' || inputValue === '') {
       throw new Error(`Input required and not supplied: ${input}`)
     }
   }

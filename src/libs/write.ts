@@ -2,7 +2,7 @@ import fs from 'fs'
 import { Args, encodePassword } from '../libs'
 
 function generateUrl(args: Args): string {
-  if (args.AZURE_PROJECT && args.AZURE_PROJECT !== '') {
+  if (typeof args.AZURE_PROJECT === 'string' && args.AZURE_PROJECT !== '') {
     return `pkgs.dev.azure.com/${args.AZURE_ORGANIZATION}/${args.AZURE_PROJECT}/_packaging/${args.AZURE_REGISTRY_NAME}/npm`
   }
   return `pkgs.dev.azure.com/${args.AZURE_ORGANIZATION}/_packaging/${args.AZURE_REGISTRY_NAME}/npm`
@@ -10,7 +10,10 @@ function generateUrl(args: Args): string {
 
 function generateRegistry(args: Args): string {
   let scope = ''
-  if (args.AZURE_REGISTRY_SCOPE && args.AZURE_REGISTRY_SCOPE !== '') {
+  if (
+    typeof args.AZURE_REGISTRY_SCOPE === 'string' &&
+    args.AZURE_REGISTRY_SCOPE !== ''
+  ) {
     scope = `${args.AZURE_REGISTRY_SCOPE}:`
   }
   return `${scope}registry=https://${generateUrl(args)}/registry/
@@ -37,11 +40,11 @@ export function generateWriteContent(args: Args): string {
 
 export function writeFile(content: string): void {
   // We need to write the file to the current workspace
-  const workspace = process.env.GITHUB_WORKSPACE
-  let path = `${workspace}/.npmrc`
 
-  if (!workspace) {
-    path = '.npmrc'
+  let path = '.npmrc'
+  const workspace = process.env.GITHUB_WORKSPACE
+  if (typeof workspace === 'string' && workspace !== '') {
+    path = `${workspace}/.npmrc`
   }
   fs.writeFileSync(path, content)
 }

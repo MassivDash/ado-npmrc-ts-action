@@ -19,5 +19,11 @@
       "@libs": ["src/libs/index.ts"]
     }
   },
-  "exclude": ["./dist", "./node_modules", "./__tests__", "./coverage"]
+  "exclude": [
+    "./dist",
+    "./node_modules",
+    "./__tests__",
+    "./coverage",
+    "jest.config.ts"
+  ]
 }
