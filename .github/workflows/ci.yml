@@ -57,6 +57,7 @@ jobs:
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           coverage-file: ./coverage/coverage-summary.json
+          skip-step: all
 
       - name: Post coverage summary
         id: coverage_summary
