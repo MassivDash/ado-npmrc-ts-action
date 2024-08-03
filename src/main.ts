@@ -19,7 +19,7 @@ import { parseArgs, generateWriteContent, writeFile } from './libs'
 // - AZURE_REGISTRY_SCOPE: Scope for the registry (optional)
 // - AZURE_ENCODE_PASSWORD: Indicates if the AZURE_PASSWORD is encoded as BASE64 string or "pure" PAT, optional
 
-export async function run (): Promise<void> {
+export async function run(): Promise<void> {
   try {
     const args = parseArgs()
     core.debug('Args parsed')

@@ -1,6 +1,6 @@
 import type { Args } from '@libs'
 
-export function encodePassword (args: Args): string {
+export function encodePassword(args: Args): string {
   if (
     args.AZURE_ENCODE_PASSWORD === 'true' ||
     args.AZURE_ENCODE_PASSWORD === true

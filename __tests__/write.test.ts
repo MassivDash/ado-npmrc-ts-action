@@ -10,7 +10,8 @@ const args: Args = {
   AZURE_USERNAME: 'username'
 }
 
-const noScopeRegistry = 'registry=https://pkgs.dev.azure.com/organization/_packaging/registry_name/npm/registry/'
+const noScopeRegistry =
+  'registry=https://pkgs.dev.azure.com/organization/_packaging/registry_name/npm/registry/'
 
 const noScopeNpmrc = `${noScopeRegistry}
 always-auth=true
@@ -23,7 +24,8 @@ always-auth=true
 //pkgs.dev.azure.com/organization/_packaging/registry_name/npm/:email=email
 ; end auth token`
 
-const scopeRegistry = '@scope:registry=https://pkgs.dev.azure.com/organization/_packaging/registry_name/npm/registry/'
+const scopeRegistry =
+  '@scope:registry=https://pkgs.dev.azure.com/organization/_packaging/registry_name/npm/registry/'
 const scopeNpmrc = `${scopeRegistry}
 always-auth=true
 ; begin auth token
@@ -35,7 +37,8 @@ always-auth=true
 //pkgs.dev.azure.com/organization/_packaging/registry_name/npm/:email=email
 ; end auth token`
 
-const projectRegistry = 'registry=https://pkgs.dev.azure.com/organization/project/_packaging/registry_name/npm/registry/'
+const projectRegistry =
+  'registry=https://pkgs.dev.azure.com/organization/project/_packaging/registry_name/npm/registry/'
 const projectNpmrc = `${projectRegistry}
 always-auth=true
 ; begin auth token

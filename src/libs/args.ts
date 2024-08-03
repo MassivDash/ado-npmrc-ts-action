@@ -11,7 +11,7 @@ export interface Args {
   AZURE_ENCODE_PASSWORD?: boolean | string
 }
 
-export function parseArgs (): Args {
+export function parseArgs(): Args {
   // Check for required inputs
   // required list: AZURE_PASSWORD, AZURE_REGISTRY_NAME, AZURE_ORGANIZATION, AZURE_EMAIL
 
