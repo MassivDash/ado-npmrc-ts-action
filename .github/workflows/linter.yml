@@ -48,4 +48,3 @@ jobs:
           VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_JSCPD: false
           TYPESCRIPT_ES_CONFIG_FILE: ./.github/linters/.eslintrc.yml
-          TYPESCRIPT_STANDARD_TSCONFIG_FILE: ./.github/linters/tsconfig.json
