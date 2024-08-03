@@ -24920,8 +24920,6 @@ exports["default"] = _default;
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ 9138:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -24985,7 +24983,6 @@ function parseArgs() {
         AZURE_REGISTRY_SCOPE,
         AZURE_ENCODE_PASSWORD
     };
-    console.log(args);
     return args;
 }
 
@@ -25093,7 +25090,6 @@ function writeFile(content) {
 
 /***/ }),
 
->>>>>>> releases/v1
 /***/ 399:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -25125,28 +25121,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = run;
 const core = __importStar(__nccwpck_require__(2186));
-<<<<<<< HEAD
-const wait_1 = __nccwpck_require__(5259);
-=======
 const libs_1 = __nccwpck_require__(76);
->>>>>>> releases/v1
 /**
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
  */
-<<<<<<< HEAD
-async function run() {
-    try {
-        const ms = core.getInput('milliseconds');
-        // Debug logs are only output if the `ACTIONS_STEP_DEBUG` secret is true
-        core.debug(`Waiting ${ms} milliseconds ...`);
-        // Log the current timestamp, wait, then log the new timestamp
-        core.debug(new Date().toTimeString());
-        await (0, wait_1.wait)(parseInt(ms, 10));
-        core.debug(new Date().toTimeString());
-        // Set outputs for other workflow steps to use
-        core.setOutput('time', new Date().toTimeString());
-=======
 //inputs
 // - AZURE_PASSWORD
 //inputs
@@ -25162,11 +25141,14 @@ async function run() {
     try {
         const args = (0, libs_1.parseArgs)();
         core.debug('Args parsed');
+        core.info(`Writing .npmrc file for ${args.AZURE_REGISTRY_NAME} registry`);
         const content = (0, libs_1.generateWriteContent)(args);
+        core.info('Content generated');
         core.debug('Content generated');
         (0, libs_1.writeFile)(content);
         core.debug('File written');
->>>>>>> releases/v1
+        core.info(`File written to ${process.env.GITHUB_WORKSPACE}/.npmrc`);
+        core.info('Action complete');
     }
     catch (error) {
         // Fail the workflow run if an error occurs
@@ -25178,33 +25160,6 @@ async function run() {
 
 /***/ }),
 
-<<<<<<< HEAD
-/***/ 5259:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.wait = wait;
-/**
- * Wait for a number of milliseconds.
- * @param milliseconds The number of milliseconds to wait.
- * @returns {Promise<string>} Resolves with 'done!' after the wait is over.
- */
-async function wait(milliseconds) {
-    return new Promise(resolve => {
-        if (isNaN(milliseconds)) {
-            throw new Error('milliseconds not a number');
-        }
-        setTimeout(() => resolve('done!'), milliseconds);
-    });
-}
-
-
-/***/ }),
-
-=======
->>>>>>> releases/v1
 /***/ 9491:
 /***/ ((module) => {
 

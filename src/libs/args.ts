@@ -47,7 +47,5 @@ export function parseArgs(): Args {
     AZURE_ENCODE_PASSWORD
   }
 
-  console.log(args)
-
   return args
 }

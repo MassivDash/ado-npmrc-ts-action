@@ -1,262 +1,58 @@
-<<<<<<< HEAD
-# Create a GitHub Action Using TypeScript
+<h1 align="center">📦 Azure Dev Ops .npmrc maker github action </h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/MassivDash/typescript-react-express-esbuild" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/SpaceoutPl" target="_blank">
+    <img alt="Twitter: SpaceoutPl" src="https://img.shields.io/twitter/follow/SpaceoutPl.svg?style=social" />
+  </a>
+</p>
 
-[![GitHub Super-Linter](https://github.com/actions/typescript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/typescript-action/actions/workflows/ci.yml/badge.svg)
-[![Check dist/](https://github.com/actions/typescript-action/actions/workflows/check-dist.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/check-dist.yml)
-[![CodeQL](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml)
-[![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
+![GitHub Super-Linter](https://github.com/MassivDash/ado-npmrc-ts-action/actions/workflows/linter.yml/badge.svg)![CI](https://github.com/MassivDash/ado-npmrc-ts-action/actions/workflows/ci.yml/badge.svg)![Compliation](https://github.com/MassivDash/ado-npmrc-ts-action/actions/workflows/check-dist.yml/badge.svg)![CodeCoverage](./badges/coverage.svg)
 
-Use this template to bootstrap the creation of a TypeScript action. :rocket:
+**Platforms**
 
-This template includes compilation support, tests, a validation workflow,
-publishing, and versioning guidance.
-
-If you are new, there's also a simpler introduction in the
-[Hello world JavaScript action repository](https://github.com/actions/hello-world-javascript-action).
-
-## Create Your Own Action
-
-To create your own action, you can use this repository as a template! Just
-follow the below instructions:
-
-1. Click the **Use this template** button at the top of the repository
-1. Select **Create a new repository**
-1. Select an owner and name for your new repository
-1. Click **Create repository**
-1. Clone your new repository
-
-> [!IMPORTANT]
->
-> Make sure to remove or update the [`CODEOWNERS`](./CODEOWNERS) file! For
-> details on how to use this file, see
-> [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
-
-## Initial Setup
-
-After you've cloned the repository to your local machine or codespace, you'll
-need to perform some initial setup steps before you can develop your action.
-
-> [!NOTE]
->
-> You'll need to have a reasonably modern version of
-> [Node.js](https://nodejs.org) handy (20.x or later should work!). If you are
-> using a version manager like [`nodenv`](https://github.com/nodenv/nodenv) or
-> [`nvm`](https://github.com/nvm-sh/nvm), this template has a `.node-version`
-> file at the root of the repository that will be used to automatically switch
-> to the correct version when you `cd` into the repository. Additionally, this
-> `.node-version` file is used by GitHub Actions in any `actions/setup-node`
-> actions.
-
-1. :hammer_and_wrench: Install the dependencies
-
-   ```bash
-   npm install
-   ```
-
-1. :building_construction: Package the TypeScript for distribution
-
-   ```bash
-   npm run bundle
-   ```
-
-1. :white_check_mark: Run the tests
-
-   ```bash
-   $ npm test
-
-   PASS  ./index.test.js
-     ✓ throws invalid number (3ms)
-     ✓ wait 500 ms (504ms)
-     ✓ test runs (95ms)
-
-   ...
-   ```
-
-## Update the Action Metadata
-
-The [`action.yml`](action.yml) file defines metadata about your action, such as
-input(s) and output(s). For details about this file, see
-[Metadata syntax for GitHub Actions](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions).
-
-When you copy this repository, update `action.yml` with the name, description,
-inputs, and outputs for your action.
-
-## Update the Action Code
-
-The [`src/`](./src/) directory is the heart of your action! This contains the
-source code that will be run when your action is invoked. You can replace the
-contents of this directory with your own code.
-
-There are a few things to keep in mind when writing your action code:
-
-- Most GitHub Actions toolkit and CI/CD operations are processed asynchronously.
-  In `main.ts`, you will see that the action is run in an `async` function.
-
-  ```javascript
-  import * as core from '@actions/core'
-  //...
-
-  async function run() {
-    try {
-      //...
-    } catch (error) {
-      core.setFailed(error.message)
-    }
-  }
-  ```
-
-  For more information about the GitHub Actions toolkit, see the
-  [documentation](https://github.com/actions/toolkit/blob/master/README.md).
-
-So, what are you waiting for? Go ahead and start customizing your action!
-
-1. Create a new branch
-
-   ```bash
-   git checkout -b releases/v1
-   ```
-
-1. Replace the contents of `src/` with your action code
-1. Add tests to `__tests__/` for your source code
-1. Format, test, and build the action
-
-   ```bash
-   npm run all
-   ```
-
-   > This step is important! It will run [`ncc`](https://github.com/vercel/ncc)
-   > to build the final JavaScript action code with all dependencies included.
-   > If you do not run this step, your action will not work correctly when it is
-   > used in a workflow. This step also includes the `--license` option for
-   > `ncc`, which will create a license file for all of the production node
-   > modules used in your project.
-
-1. Commit your changes
-
-   ```bash
-   git add .
-   git commit -m "My first action is ready!"
-   ```
-
-1. Push them to your repository
-
-   ```bash
-   git push -u origin releases/v1
-   ```
-
-1. Create a pull request and get feedback on your action
-1. Merge the pull request into the `main` branch
-
-Your action is now published! :rocket:
-
-For information about versioning your action, see
-[Versioning](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-in the GitHub Actions toolkit.
-
-## Validate the Action
-
-You can now validate the action by referencing it in a workflow file. For
-example, [`ci.yml`](./.github/workflows/ci.yml) demonstrates how to reference an
-action in the same repository.
-
-```yaml
-steps:
-  - name: Checkout
-    id: checkout
-    uses: actions/checkout@v4
-
-  - name: Test Local Action
-    id: test-action
-    uses: ./
-    with:
-      milliseconds: 1000
-
-  - name: Print Output
-    id: output
-    run: echo "${{ steps.test-action.outputs.time }}"
-```
-
-For example workflow runs, check out the
-[Actions tab](https://github.com/actions/typescript-action/actions)! :rocket:
-
-## Usage
-
-After testing, you can create version tag(s) that developers can use to
-reference different stable versions of your action. For more information, see
-[Versioning](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-in the GitHub Actions toolkit.
-
-To include the action in a workflow in another repository, you can use the
-`uses` syntax with the `@` symbol to reference a specific branch, tag, or commit
-hash.
-
-```yaml
-steps:
-  - name: Checkout
-    id: checkout
-    uses: actions/checkout@v4
-
-  - name: Test Local Action
-    id: test-action
-    uses: actions/typescript-action@v1 # Commit with the `v1` tag
-    with:
-      milliseconds: 1000
-
-  - name: Print Output
-    id: output
-    run: echo "${{ steps.test-action.outputs.time }}"
-```
-
-## Publishing a New Release
-
-This project includes a helper script, [`script/release`](./script/release)
-designed to streamline the process of tagging and pushing new releases for
-GitHub Actions.
-
-GitHub Actions allows users to select a specific version of the action to use,
-based on release tags. This script simplifies this process by performing the
-following steps:
-
-1. **Retrieving the latest release tag:** The script starts by fetching the most
-   recent release tag by looking at the local data available in your repository.
-1. **Prompting for a new release tag:** The user is then prompted to enter a new
-   release tag. To assist with this, the script displays the latest release tag
-   and provides a regular expression to validate the format of the new tag.
-1. **Tagging the new release:** Once a valid new tag is entered, the script tags
-   the new release.
-1. **Pushing the new tag to the remote:** Finally, the script pushes the new tag
-   to the remote repository. From here, you will need to create a new release in
-   GitHub and users can easily reference the new tag in their workflows.
-=======
-# Azure Dev Ops .npmrc maker github action
-
-[![GitHub Super-Linter](https://github.com/actions/hello-world-javascript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/hello-world-javascript-action/actions/workflows/ci.yml/badge.svg)
+![windows](https://img.shields.io/badge/Platform-Windows-blue)
+![linux](https://img.shields.io/badge/Platform-Linux-blue)
+![macOs](https://img.shields.io/badge/Platform-MacOs-blue)
 
 This action will create a .npmrc file with authorization needed to access Azure
-Dev Ops internal npm registry / feed.
+Dev Ops internal npm registry / feed. Works on all github OS machines (Windows,
+Linux, MacOS)
+
+**Minimal node version**
+
+![Static Badge](https://img.shields.io/badge/_node_-%3E%3D_20.6.0-red)
 
 ```
-registry=https://pkgs.dev.azure.com//_packaging/UPSTREAM_NPM_REG/npm/registry/
+registry=https://pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/
 always-auth=true
 ; begin auth token
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/registry/:username=JLL-DSEMEA
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/registry/:_password=cHI3dDZqNmx1dWJmcHlnbTRvYzUydnJvenZ6c3dnbW42NzU3ZGJ5dWI2ZGZ4Zmdsb3cycQ==
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/registry/:email=lukasz.celitan@eu.jll.com
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/:username=JLL-DSEMEA
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/:_password=cHI3dDZqNmx1dWJmcHlnbTRvYzUydnJvenZ6c3dnbW42NzU3ZGJ5dWI2ZGZ4Zmdsb3cycQ==
-//pkgs.dev.azure.com/JLL-DSEMEA/_packaging/UPSTREAM_NPM_REG/npm/:email=lukasz.celitan@eu.jll.com
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/:username=AZURE_USERNAME
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/:_password=AZURE_PASSWORD
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/registry/:email=AZURE_EMAIL
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/:username=AZURE_USERNAME
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/:_password=AZURE_PASSWORD
+//pkgs.dev.azure.com/AZURE_ORGANIZATION/_packaging/AZURE_REGISTRY_NAME/npm/:email=AZURE_EMAIL
 ; end auth token
-
 ```
 
+\*action works with project based feeds aswell
+
 Works on all OS types (mac, windows, linux) with node >= 20.0.0 setup
+
+---
 
 ## Prerequisites
 
 - Azure Dev Ops npm registry
 - Azure PAT token
+
+---
 
 ## Variables
 
@@ -271,35 +67,87 @@ Works on all OS types (mac, windows, linux) with node >= 20.0.0 setup
 | AZURE_REGISTRY_SCOPE  | Scope for the registry (optional)                                                   | No       | @your-org     | string  |
 | AZURE_ENCODE_PASSWORD | Indicates if the AZURE_PASSWORD is encoded as BASE64 string or "pure" PAT, optional | No       | false         | boolean |
 
+---
+
 ## Usage
 
 Here's an example of how to use this action in a workflow file:
 
 ```yaml
 name: Example Workflow
-
 on:
   workflow_dispatch:
     inputs:
-      azure-registry:
-        description: Who to greet in the log
-        required: true
-        default: 'World'
-        type: string
+      inputs:
+        AZURE_PASSWORD:
+          description:
+            'Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT'
+          required: true
+          default: ''
+          type: string
+        AZURE_REGISTRY_NAME:
+          description: 'Name of the registry'
+          required: true
+          default: 'Upstream'
+          type: string
+        AZURE_ORGANIZATION:
+          description: 'Name of your ADO organization'
+          required: true
+          default: 'Org'
+          type: string
+        AZURE_PROJECT:
+          description: 'NAME of your Project (optional)'
+          required: false
+          default: 'Project'
+          type: string
+        AZURE_USERNAME:
+          description: 'Name of the user, usually the same as ORG'
+          required: false
+          default: 'ORG'
+          type: string
+        AZURE_EMAIL:
+          description: 'Email of the user, creator of the AZURE_PASSWORD'
+          required: true
+          default: 'user@org.com'
+          type: string
+        AZURE_REGISTRY_SCOPE:
+          description: 'Scope for the registry (optional)'
+          required: false
+          default: '@your-org'
+          type: string
+        AZURE_ENCODE_PASSWORD:
+          description:
+            'Indicates if the AZURE_PASSWORD is encoded as BASE64 string or
+            "pure" PAT, optional'
+          required: false
+          default: false
+          type: boolean
 
 jobs:
-  say-hello:
-    name: Say Hello
+  test:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:
       # Change @main to a specific commit SHA or version tag, e.g.:
-      # actions/hello-world-javascript-action@e76147da8e5c81eaf017dede5645551d4b94427b
-      # actions/hello-world-javascript-action@v1.2.3
-      - name: Print to Log
-        id: print-to-log
-        uses: actions/hello-world-javascript-action@main
+      # MassivDash/ado-npmrc-ts-action@e76147da8e5c81eaf017dede5645551d4b94427b
+      # MassivDash/ado-npmrc-ts-action@v0.0.3
+
+      - name: Create a Azure Dev Ops .npmrc file
+        id: ado-npmrc
+        uses: MassivDash/ado-npmrc-ts-action@v0.0.2
         with:
-          who-to-greet: ${{ inputs.who-to-greet }}
+          AZURE_PASSWORD: { { secrets.AZURE_PASSWORD } }
+          AZURE_REGISTRY_NAME: 'registry'
+          AZURE_USERNAME: 'username'
+          AZURE_ORGANIZATION: 'organization'
+          AZURE_EMAIL: 'user@email.com'
 ```
->>>>>>> releases/v1
+
+---
+
+<img src="https://spaceout.pl/icons/icon-96x96.png?v=c01d3dc2404b91dfce33d962ff296151" alt="spaceout.pl" />
+
+Luke Celitan, [Spaceghost](https://spaceout.pl/about)
+
+x: [@Spaceout.pl] https://spaceout.pl
