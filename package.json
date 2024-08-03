@@ -42,40 +42,6 @@
     "all": "npm run format:write && npm run lint && npm run test && npm run coverage && npm run package"
   },
   "license": "MIT",
-  "jest": {
-    "preset": "ts-jest",
-    "verbose": true,
-    "clearMocks": true,
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "js",
-      "ts"
-    ],
-    "testMatch": [
-      "**/*.test.ts"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/"
-    ],
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "coverageReporters": [
-      "json-summary",
-      "text",
-      "lcov",
-      "cobertura"
-    ],
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "./src/**"
-    ],
-    "moduleNameMapper": {
-      "@libs$": "<rootDir>/src/libs/index.ts",
-      "@libs/(.*)$": "<rootDir>/src/libs/$1"
-    }
-  },
   "dependencies": {
     "@actions/core": "^1.10.1"
   },
