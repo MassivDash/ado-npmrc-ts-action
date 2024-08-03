@@ -24961,7 +24961,8 @@ function parseArgs() {
         'AZURE_EMAIL'
     ];
     for (const input of required) {
-        if (!core.getInput(input) || core.getInput(input) === '') {
+        const inputValue = core.getInput(input);
+        if (typeof inputValue !== 'string' || inputValue === '') {
             throw new Error(`Input required and not supplied: ${input}`);
         }
     }
@@ -25048,14 +25049,15 @@ exports.writeFile = writeFile;
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 const libs_1 = __nccwpck_require__(76);
 function generateUrl(args) {
-    if (args.AZURE_PROJECT && args.AZURE_PROJECT !== '') {
+    if (typeof args.AZURE_PROJECT === 'string' && args.AZURE_PROJECT !== '') {
         return `pkgs.dev.azure.com/${args.AZURE_ORGANIZATION}/${args.AZURE_PROJECT}/_packaging/${args.AZURE_REGISTRY_NAME}/npm`;
     }
     return `pkgs.dev.azure.com/${args.AZURE_ORGANIZATION}/_packaging/${args.AZURE_REGISTRY_NAME}/npm`;
 }
 function generateRegistry(args) {
     let scope = '';
-    if (args.AZURE_REGISTRY_SCOPE && args.AZURE_REGISTRY_SCOPE !== '') {
+    if (typeof args.AZURE_REGISTRY_SCOPE === 'string' &&
+        args.AZURE_REGISTRY_SCOPE !== '') {
         scope = `${args.AZURE_REGISTRY_SCOPE}:`;
     }
     return `${scope}registry=https://${generateUrl(args)}/registry/
@@ -25079,10 +25081,10 @@ function generateWriteContent(args) {
 }
 function writeFile(content) {
     // We need to write the file to the current workspace
+    let path = '.npmrc';
     const workspace = process.env.GITHUB_WORKSPACE;
-    let path = `${workspace}/.npmrc`;
-    if (!workspace) {
-        path = '.npmrc';
+    if (typeof workspace === 'string' && workspace !== '') {
+        path = `${workspace}/.npmrc`;
     }
     fs_1.default.writeFileSync(path, content);
 }
@@ -25126,9 +25128,9 @@ const libs_1 = __nccwpck_require__(76);
  * The main function for the action.
  * @returns {Promise<void>} Resolves when the action is complete.
  */
-//inputs
+// inputs
 // - AZURE_PASSWORD
-//inputs
+// inputs
 // - AZURE_PASSWORD: Azure Dev Ops PAT token encoded as BASE64 string or "pure" PAT
 // - AZURE_REGISTRY_NAME: Name of the registry
 // - AZURE_ORGANIZATION: Name of your ADO organization
@@ -25147,7 +25149,7 @@ async function run() {
         core.debug('Content generated');
         (0, libs_1.writeFile)(content);
         core.debug('File written');
-        core.info(`File written to ${process.env.GITHUB_WORKSPACE}/.npmrc`);
+        core.info(`File written to ${process.env.GITHUB_WORKSPACE ?? ''}/.npmrc`);
         core.info('Action complete');
     }
     catch (error) {

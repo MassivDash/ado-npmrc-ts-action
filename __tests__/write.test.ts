@@ -82,4 +82,15 @@ describe('Write', () => {
 
     expect(writeFileSyncMock).toHaveBeenCalled()
   })
+
+  it('writes to the workspace', () => {
+    // mock process.env.GITHUB_WORKSPACE
+
+    process.env.GITHUB_WORKSPACE = 'project'
+
+    const content = generateWriteContent(args)
+    writeFile(content)
+
+    expect(writeFileSyncMock).toHaveBeenCalledWith('project/.npmrc', content)
+  })
 })

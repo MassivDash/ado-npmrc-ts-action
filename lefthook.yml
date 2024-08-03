@@ -20,15 +20,11 @@ pre-commit:
       run: npm run lint
     prettier:
       glob: '*.{js,ts,jsx,tsx}'
-      run: npm run prettier:write
+      run: npm run format:write
     test:
       tags: test
       glob: '*.{js,ts,jsx,tsx}'
       run: npm run test
-    ts-std:
-      tags: typescript
-      glob: '*.{js,ts,jsx,tsx}'
-      run: npx ts-standard
     build:
       tags: build
       glob: '*.{js,ts,jsx,tsx}'
