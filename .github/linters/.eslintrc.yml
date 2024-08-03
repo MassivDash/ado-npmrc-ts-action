@@ -13,7 +13,6 @@ ignorePatterns:
   - '**/dist/.*'
   - '**/coverage/.*'
   - '*.json'
-  - 'jest.config.ts'
 
 parser: '@typescript-eslint/parser'
 
