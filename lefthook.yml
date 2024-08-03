@@ -13,14 +13,10 @@
 #       run: bundle audit
 #
 pre-commit:
-  parallel: true
   commands:
     eslint:
       glob: '*.{js,ts,jsx,tsx}'
       run: npm run lint
-    prettier:
-      glob: '*.{js,ts,jsx,tsx, json}'
-      run: npm run format:write
     test:
       tags: test
       glob: '*.{js,ts,jsx,tsx, json}'
@@ -29,3 +25,7 @@ pre-commit:
       tags: build
       glob: '*.{js,ts,jsx,tsx}'
       run: npm run package
+    typecheck:
+      tags: typecheck
+      glob: '*.{js,ts,jsx,tsx}'
+      run: npx ts-standard --project ./.github/linters/tsconfig.json --fix
