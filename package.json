@@ -110,8 +110,5 @@
         "lines": 80
       }
     }
-  },
-  "ts-standard": {
-    "project": ".github/linters/tsconfig.json"
   }
 }
